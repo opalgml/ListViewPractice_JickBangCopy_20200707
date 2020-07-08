@@ -1,5 +1,6 @@
 package kr.co.tjoeun.listviewpractice_jickbangcopy_20200707
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ArrayAdapter
@@ -21,10 +22,28 @@ class MainActivity : BaseActivity() {
 
         setValues()
 
+        roomListView.setOnItemClickListener { parent, view, position, id ->
+
+            val clickedRoom = mRoomList[position]
+
+//            눌린 방의 정보를 상세화면에 전달
+            val myIntent = Intent(mContext, ViewRoomActivity::class.java)
+
+            myIntent.putExtra("room", clickedRoom)
+
+            startActivity(myIntent)
+
+        }
+
     }
 
     override fun setupEvents()
     {
+
+        roomListView.setOnItemClickListener { parent, view, position, id ->
+            val clickedRood = mRoomList[position]
+        }
+
     }
 
     override fun setValues()
